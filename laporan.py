@@ -19,27 +19,53 @@ def hitung_suara(kandidat_id, votes):
             total += 1
     return total
 
+def urutkan_hasil_voting(hasil):
+    """
+    Mengurutkan hasil voting berdasarkan jumlah suara terbanyak.
+    Sorting menggunakan Bubble Sort secara descending.
+    """
+    n = len(hasil)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if hasil[j]["jumlah_suara"] < hasil[j + 1]["jumlah_suara"]:
+                hasil[j], hasil[j + 1] = hasil[j + 1], hasil[j]
+
+    return hasil
 
 def lihat_hasil_voting():
-    """Menampilkan hasil voting setiap kandidat."""
+    """Menampilkan hasil voting setiap kandidat yang sudah diurutkan."""
     data = load_data()
     kandidat_list = data["kandidat"]
     votes = data["votes"]
 
     print("\n=====================================")
     print("            HASIL VOTING")
+    print("      Urut Berdasarkan Suara")
     print("=====================================")
 
     if not kandidat_list:
         print("Belum ada kandidat.")
         return
 
+    hasil = []
+
+    for kandidat in kandidat_list:
+        total_suara = hitung_suara(kandidat["id"], votes)
+
+        hasil.append({
+            "nama": kandidat["nama"],
+            "jumlah_suara": total_suara
+        })
+
+    # Sorting hasil voting dari suara terbanyak ke terkecil
+    hasil_terurut = urutkan_hasil_voting(hasil)
+
     print(f"{'No':<4}{'Nama Kandidat':<25}{'Jumlah Suara'}")
     print("-------------------------------------")
 
-    for index, kandidat in enumerate(kandidat_list, start=1):
-        total_suara = hitung_suara(kandidat["id"], votes)
-        print(f"{index:<4}{kandidat['nama']:<25}{total_suara}")
+    for index, item in enumerate(hasil_terurut, start=1):
+        print(f"{index:<4}{item['nama']:<25}{item['jumlah_suara']}")
 
     print("-------------------------------------")
     print(f"Total Suara Masuk: {len(votes)}")
