@@ -1,0 +1,45 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "nama": "Administrator",
+            "username": "admin",
+            "password": "admin123",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "nama": "Muhamad Qeisha",
+            "username": "KKKK",
+            "password": "123",
+            "role": "voter"
+        }
+    ],
+    "kandidat": [
+        {
+            "id": 1,
+            "nama": "Andi Pratama",
+            "visi": "Mewujudkan organisasi yang aktif dan transparan",
+            "misi": "Mengadakan kegiatan positif dan meningkatkan komunikasi"
+        },
+        {
+            "id": 2,
+            "nama": "Budi Santoso",
+            "visi": "Menciptakan lingkungan yang kreatif dan disiplin",
+            "misi": "Mendorong inovasi, kerja sama, dan tanggung jawab"
+        },
+        {
+            "id": 3,
+            "nama": "asep kopling",
+            "visi": "buat mbg",
+            "misi": "mbg jaya"
+        }
+    ],
+    "votes": [
+        {
+            "user_id": 2,
+            "kandidat_id": 1,
+            "waktu_vote": "2026-06-26 13:50:24"
+        }
+    ]
+}
